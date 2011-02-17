@@ -22,6 +22,7 @@ up your own URL patterns for these views instead.
 
 
 from django.conf.urls.defaults import *
+from django.conf import settings
 from django.views.generic.simple import direct_to_template
 
 from registration.views import activate
@@ -39,7 +40,9 @@ urlpatterns = patterns('',
                        # confusing 404.
                        url(r'^activate/(?P<activation_key>\w+)/$',
                            activate,
-                           {'backend': 'registration.backends.email.EmailBackend'},
+                           {'backend': 'registration.backends.email.EmailBackend',
+                               'success_url' : settings.ACTIVATED_URL,
+                           },
                            name='registration_activate'),
                        url(r'^register/$',
                            register,

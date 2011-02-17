@@ -94,7 +94,7 @@ class EmailBackend(object):
         ``registration.signals.user_activated`` will be sent, with the
         newly activated ``User`` as the keyword argument ``user`` and
         the class of this backend as the sender.
-        
+
         """
         activated = RegistrationProfile.objects.activate_user(activation_key)
         if activated:
